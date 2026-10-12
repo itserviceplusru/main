@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ИТ СЕРВИС ПЛЮС — ИТ-обслуживание компаний в Москве</title>
+<meta name="description" content="ООО «ИТ СЕРВИС ПЛЮС»: обслуживание компьютеров, сетей и серверов, резервное копирование, информационная безопасность, абонентское ИТ-сопровождение. Москва, ул. Тропарёвская, 4с1.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: фирменный знак «+», крупное название, подробный каталог услуг, порядок работы и карточка контактов. Палитра графитово-зелёная, без синего */
+  :root {
+    --bg: #f2f4f1;
+    --surface: #ffffff;
+    --fg: #14201a;
+    --muted: #525f57;
+    --line: #d6dcd5;
+    --accent: #0f7a4d;
+    --accent-ink: #ffffff;
+    --accent-soft: #dcefe3;
+    --font-display: "Unbounded", "Onest", system-ui, sans-serif;
+    --font-body: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1511;
+      --surface: #141f19;
+      --fg: #e7efe9;
+      --muted: #9db0a3;
+      --line: #263a2f;
+      --accent: #4cc38a;
+      --accent-ink: #0b1a12;
+      --accent-soft: #17301f;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1511;
+    --surface: #141f19;
+    --fg: #e7efe9;
+    --muted: #9db0a3;
+    --line: #263a2f;
+    --accent: #4cc38a;
+    --accent-ink: #0b1a12;
+    --accent-soft: #17301f;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    padding-inline: 20px;
+    padding-block: 0 40px;
+  }
+  .wrap { max-width: 1040px; margin-inline: auto; }
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  /* Шапка */
+  header.top {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding-block: 22px; flex-wrap: wrap;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--fg); }
+  .mark {
+    width: 40px; height: 40px; border-radius: 10px; background: var(--accent); color: var(--accent-ink);
+    display: grid; place-items: center; flex: none;
+  }
+  .mark svg { width: 22px; height: 22px; display: block; }
+  .brand-name { font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: .04em; }
+  nav { display: flex; gap: 22px; flex-wrap: wrap; font-size: 15px; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--fg); }
+
+  /* Первый экран */
+  .hero { padding-block: 56px 64px; display: grid; gap: 28px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  h1 {
+    font-family: var(--font-display); font-weight: 600; margin: 0;
+    font-size: clamp(34px, 7.2vw, 76px); line-height: 1.05; letter-spacing: -.02em; text-wrap: balance;
+  }
+  h1 .plus { color: var(--accent); }
+  .lead { max-width: 60ch; font-size: clamp(18px, 2.2vw, 21px); color: var(--muted); margin: 0; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px;
+    background: var(--accent); color: var(--accent-ink); font-weight: 600; font-size: 16px;
+    border: 0; border-radius: 10px; text-decoration: none; cursor: pointer; font-family: inherit;
+  }
+  .btn:hover { filter: brightness(1.08); }
+  .btn.ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); }
+  .btn.ghost:hover { border-color: var(--accent); filter: none; }
+
+  /* Секции */
+  section { padding-block: 48px; border-top: 1px solid var(--line); }
+  h2 { font-family: var(--font-display); font-weight: 500; font-size: clamp(22px, 3.4vw, 32px); line-height: 1.2; margin: 0 0 12px; text-wrap: balance; }
+  .sec-lead { color: var(--muted); max-width: 62ch; margin: 0 0 32px; }
+
+  /* Услуги */
+  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; }
+  .service { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 26px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .service .tag { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+  .service h3 { font-size: 20px; line-height: 1.3; margin: 0; font-weight: 600; text-wrap: balance; }
+  .service > p { margin: 0; color: var(--muted); font-size: 16px; }
+  .service ul { list-style: none; margin: 4px 0 0; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; font-size: 15.5px; }
+  .service li { position: relative; padding-left: 22px; }
+  .service li::before { content: "+"; position: absolute; left: 0; top: 0; font-family: var(--font-mono); font-weight: 500; color: var(--accent); }
+  .more { margin: 24px 0 0; padding: 18px 22px; background: var(--accent-soft); border-radius: 12px; font-size: 16px; }
+  .more strong { font-weight: 600; }
+
+  /* Порядок работы: это реальная последовательность */
+  ol.steps { list-style: none; counter-reset: s; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 24px; }
+  ol.steps li { counter-increment: s; padding-top: 16px; border-top: 2px solid var(--line); min-width: 0; }
+  ol.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-mono); font-size: 13px; color: var(--accent); display: block; margin-bottom: 8px; }
+  ol.steps strong { display: block; font-size: 17px; margin-bottom: 4px; }
+  ol.steps span { color: var(--muted); font-size: 16px; }
+
+  /* Контакты */
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+  .card > div { padding: 32px; min-width: 0; }
+  .card .side { background: var(--accent-soft); border-radius: 0 18px 18px 0; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+  dl { margin: 0; display: grid; gap: 22px; }
+  dt { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  dd { margin: 0; font-size: 18px; overflow-wrap: anywhere; }
+  .pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); gap: 22px; }
+  .pair > div { min-width: 0; }
+  .num { font-family: var(--font-mono); font-size: 17px; font-variant-numeric: tabular-nums; }
+  .email-line { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .email-text { font-family: var(--font-mono); font-size: 17px; user-select: all; overflow-wrap: anywhere; }
+  .copy { min-height: 36px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); font: inherit; font-size: 14px; cursor: pointer; }
+  .copy:hover { border-color: var(--accent); }
+  .side h3 { font-family: var(--font-display); font-weight: 500; font-size: 20px; margin: 0; line-height: 1.3; }
+  .side p { margin: 0; color: var(--muted); font-size: 16px; }
+  .side .btn { align-self: flex-start; margin-top: 8px; }
+  .status { min-height: 1.4em; font-size: 14px; color: var(--muted); }
+
+  footer { padding-block: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+  @media (max-width: 760px) {
+    body { font-size: 16px; }
+    .hero { padding-block: 32px 40px; }
+    .card { grid-template-columns: minmax(0, 1fr); }
+    .card .side { border-radius: 0 0 18px 18px; }
+    .card > div { padding: 24px; }
+    section { padding-block: 36px; }
+    .service { padding: 22px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn, .copy, nav a { transition: filter .15s, border-color .15s, color .15s; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top" aria-label="ИТ СЕРВИС ПЛЮС">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg>
+      </span>
+      <span class="brand-name">ИТ СЕРВИС ПЛЮС</span>
+    </a>
+    <nav aria-label="Разделы">
+      <a href="#services">Услуги</a>
+      <a href="#process">Как работаем</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div class="eyebrow">ООО «ИТ СЕРВИС ПЛЮС» </div>
+      <h1>ИТ-сервис, который<br>держит работу <span class="plus">в строю</span></h1>
+      <p class="lead">Обслуживаем компьютеры, сети и серверы небольших и средних компаний. Настраиваем, поддерживаем и отвечаем, когда что-то перестало работать.</p>
+      <div class="cta-row">
+        <a class="btn" href="mailto:info@itserviceplus.ru">Написать нам</a>
+        <a class="btn ghost" href="#services">Посмотреть услуги</a>
+      </div>
+    </div>
+
+    <section id="services">
+      <h2>Услуги</h2>
+      <p class="sec-lead">Работаем с офисной ИТ-инфраструктурой целиком или берём на себя отдельные задачи. Состав работ и стоимость согласуем до начала.</p>
+      <div class="services">
+
+        <article class="service">
+          <div class="tag">Рабочие места</div>
+          <h3>Компьютеры, ноутбуки и оргтехника</h3>
+          <p>Подготавливаем рабочие места сотрудников и поддерживаем их в рабочем состоянии.</p>
+          <ul>
+            <li>Установка и настройка Windows, macOS и Linux</li>
+            <li>Установка офисных и специализированных программ</li>
+            <li>Настройка корпоративной почты и учётных записей</li>
+            <li>Подключение и настройка принтеров, МФУ, сканеров</li>
+            <li>Диагностика и ремонт ПК и ноутбуков, замена комплектующих, апгрейд</li>
+            <li>Чистка от пыли и вирусов, замена термопасты</li>
+            <li>Помощь пользователям: удалённо и с выездом в офис</li>
+          </ul>
+        </article>
+
+        <article class="service">
+          <div class="tag">Сети</div>
+          <h3>Локальные сети и Wi-Fi</h3>
+          <p>Делаем так, чтобы интернет и общие ресурсы в офисе работали стабильно.</p>
+          <ul>
+            <li>Прокладка кабельной сети и монтаж розеток</li>
+            <li>Настройка маршрутизаторов, коммутаторов и точек доступа</li>
+            <li>Организация Wi-Fi с покрытием всего помещения</li>
+            <li>Подключение и настройка интернет-каналов</li>
+            <li>VPN для сотрудников, работающих из дома и в командировках</li>
+            <li>Поиск и устранение причин медленной или нестабильной сети</li>
+          </ul>
+        </article>
+
+        <article class="service">
+          <div class="tag">Серверы</div>
+          <h3>Серверы и общие ресурсы</h3>
+          <p>Настраиваем серверы, на которых хранятся документы и работают рабочие программы.</p>
+          <ul>
+            <li>Установка и настройка серверов на Windows Server и Linux</li>
+            <li>Файловые серверы и общие папки с разграничением доступа</li>
+            <li>Развёртывание домена и управление учётными записями</li>
+            <li>Виртуализация: несколько серверов на одном оборудовании</li>
+            <li>Установка обновлений и контроль состояния серверов</li>
+            <li>Перенос данных и программ на новое оборудование</li>
+          </ul>
+        </article>
+
+        <article class="service">
+          <div class="tag">Данные</div>
+          <h3>Резервное копирование и восстановление</h3>
+          <p>Защищаем документы и базы от потери из-за сбоя, ошибки сотрудника или вируса.</p>
+          <ul>
+            <li>Настройка автоматического резервного копирования</li>
+            <li>Хранение копий на отдельном устройстве, сервере или в облаке</li>
+            <li>Регулярная проверка, что копии читаются и подходят для восстановления</li>
+            <li>Восстановление удалённых и повреждённых файлов</li>
+            <li>Восстановление системы после сбоя диска или заражения</li>
+          </ul>
+        </article>
+
+        <article class="service">
+          <div class="tag">Безопасность</div>
+          <h3>Информационная безопасность</h3>
+          <p>Закрываем основные риски, из-за которых компании теряют данные и деньги.</p>
+          <ul>
+            <li>Антивирусная защита рабочих мест и серверов</li>
+            <li>Настройка межсетевого экрана и защиты доступа в интернет</li>
+            <li>Разграничение прав доступа и политика паролей</li>
+            <li>Защита почты от спама и вредоносных вложений</li>
+            <li>Регулярное обновление операционных систем и программ</li>
+            <li>Рекомендации сотрудникам по безопасной работе</li>
+          </ul>
+        </article>
+
+        <article class="service">
+          <div class="tag">Сопровождение</div>
+          <h3>Абонентское обслуживание</h3>
+          <p>Берём ИТ компании на постоянное сопровождение по договору, как внешний ИТ-отдел.</p>
+          <ul>
+            <li>Приём и выполнение заявок от сотрудников</li>
+            <li>Профилактические работы по согласованному графику</li>
+            <li>Учёт компьютеров, оборудования и программных лицензий</li>
+            <li>Контроль резервных копий, обновлений и защиты</li>
+            <li>Отчёт о выполненных работах</li>
+            <li>Фиксированная ежемесячная стоимость, согласованная в договоре</li>
+          </ul>
+        </article>
+
+      </div>
+      <p class="more"><strong>Также:</strong> подбор и закупка компьютеров, оборудования и лицензий, подготовка офиса к переезду, консультации по ИТ-вопросам.</p>
+    </section>
+
+    <section id="process">
+      <h2>Как мы работаем</h2>
+      <p class="sec-lead">Начать просто: достаточно описать задачу письмом.</p>
+      <ol class="steps">
+        <li><strong>Заявка</strong><span>Вы пишете на info@itserviceplus.ru и коротко описываете, что нужно сделать.</span></li>
+        <li><strong>Уточнение</strong><span>Мы задаём вопросы и определяем объём работ.</span></li>
+        <li><strong>Согласование</strong><span>Называем сроки и стоимость до начала работы.</span></li>
+        <li><strong>Выполнение</strong><span>Делаем работу и сообщаем, что сделано.</span></li>
+      </ol>
+    </section>
+
+    <section id="contacts">
+      <h2>Контакты</h2>
+      <p class="sec-lead">Реквизиты компании и адрес офиса.</p>
+      <div class="card">
+        <div>
+          <dl>
+            <div>
+              <dt>Организация</dt>
+              <dd>ООО «ИТ СЕРВИС ПЛЮС»</dd>
+            </div>
+            <div class="pair">
+              <div>
+                <dt>ИНН</dt>
+                <dd class="num">9729408556</dd>
+              </div>
+              <div>
+                <dt>ОГРН</dt>
+                <dd class="num">1257700436410</dd>
+              </div>
+            </div>
+            <div>
+              <dt>Адрес</dt>
+              <dd>119602, г. Москва, вн.тер.г. муниципальный округ Тропарёво-Никулино, ул. Тропарёвская, д. 4, стр. 1, помещение 6А/2</dd>
+            </div>
+            <div>
+              <dt>Электронная почта</dt>
+              <dd class="email-line">
+                <span class="email-text" id="email">info@itserviceplus.ru</span>
+                <button class="copy" id="copy-btn" type="button">Скопировать</button>
+              </dd>
+            </div>
+          </dl>
+          <div class="status" id="copy-status" role="status" aria-live="polite"></div>
+        </div>
+        <div class="side">
+          <h3>Расскажите о задаче</h3>
+          <p>Напишите на почту: опишите, что нужно настроить или починить, и мы ответим с вопросами и сроками.</p>
+          <a class="btn" href="mailto:info@itserviceplus.ru">Написать письмо</a>
+          <a class="btn ghost" href="https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%A2%D1%80%D0%BE%D0%BF%D0%B0%D1%80%D1%91%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%2C%204%D1%811" target="_blank" rel="noopener">Показать на карте</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 ООО «ИТ СЕРВИС ПЛЮС»</span>
+    <span>itserviceplus.ru</span>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var btn = document.getElementById('copy-btn');
+    var status = document.getElementById('copy-status');
+    var emailEl = document.getElementById('email');
+    function selectEmail() {
+      var r = document.createRange();
+      r.selectNodeContents(emailEl);
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+    }
+    btn.addEventListener('click', function () {
+      var text = emailEl.textContent.trim();
+      var done = function () { status.textContent = 'Адрес скопирован'; };
+      var fail = function () { selectEmail(); status.textContent = 'Адрес выделен, нажмите Ctrl+C'; };
+      try {
+        navigator.clipboard.writeText(text).then(done, fail);
+      } catch (e) { fail(); }
+    });
+  })();
+</script>
+</body>
+</html>
